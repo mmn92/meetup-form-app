@@ -13,7 +13,7 @@ function Form() {
       <Title>Meetup Form</Title>
       <Label>
         <span>Nome</span>
-        <input type="text" name="name" />
+        <input type="text" name="name" placeholder="Fulana" />
       </Label>
       <Label>
         <span>Data de Nascimento</span>
