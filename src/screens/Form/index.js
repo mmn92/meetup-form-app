@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Select from '../../components/Select'
+import { SELECT_VALUES } from '../../constants'
 import { Title, Label, Button } from "./styles";
 
 function Form() {
+  const [formResult, setFormResult] = useState({
+    name: '', birthDate: '', position: '', class: '', pet: '', petName: ''
+  })
+
   const [hasPet, setHasPet] = useState(false);
+
+  useEffect(() => {
+    console.log(formResult)
+  }, [formResult])
 
   const handleSubmit = (form) => {
     form.preventDefault();
+  };
+
+  const handleChange = (change) => {
+    setFormResult({...formResult, [change.target.name]: change.target.text })
   };
 
   return (
@@ -20,16 +34,7 @@ function Form() {
         <input type="text" name="birthDate" />
       </Label>
       <Label>
-        <span>Nível</span>
-        <select name="position">
-          <option value="" selected disabled>
-            Selecione seu nível
-          </option>
-          <option value="junior">Júnior</option>
-          <option value="mid">Pleno</option>
-          <option value="senior">Senior</option>
-          <option value="god">Topper das Galáxias</option>
-        </select>
+        <Select options={SELECT_VALUES} />
       </Label>
       <Label>
         <span>Quem é você nesse mundo?</span>
