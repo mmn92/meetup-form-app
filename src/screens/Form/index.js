@@ -19,7 +19,8 @@ function Form() {
   };
 
   const handleChange = (change) => {
-    setFormResult({...formResult, [change.target.name]: change.target.text })
+    console.log(change)
+    setFormResult({...formResult, [change.name]: change.value })
   };
 
   return (
@@ -34,7 +35,7 @@ function Form() {
         <input type="text" name="birthDate" />
       </Label>
       <Label>
-        <Select options={SELECT_VALUES} />
+        <Select options={SELECT_VALUES} handleChange={handleChange} />
       </Label>
       <Label>
         <span>Quem é você nesse mundo?</span>
