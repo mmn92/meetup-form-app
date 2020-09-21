@@ -8,9 +8,9 @@ describe("Select test", () => {
     afterEach(cleanup)
 
     it("should be render select change value", async () => {
-        const { getByName, getByTestId } = render(<Select options={SELECT_VALUES} handleChange={() => {}} />);
+        const { getByTestId, getByText } = render(<Select options={SELECT_VALUES} handleChange={() => {}} />);
 
-        fireEvent.change(getByName("position"), { target: { value: "senior" }});
+        fireEvent.change(getByTestId("position"), { target: { value: "senior" }});
 
         expect(getByTestId("selecionado")).toBeInTheDocument();
 
