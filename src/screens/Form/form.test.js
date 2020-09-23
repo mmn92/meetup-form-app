@@ -18,8 +18,8 @@ describe("Form tests", () => {
 
         const input = getByPlaceholderText("Fulana")
 
-        fireEvent.change(input, name);
+        fireEvent.change(input, { target: { value: name } });
 
-        expect(getByText(name)).toBeInTheDocument();
+        expect(input.value).toBe(name);
     })
 });
