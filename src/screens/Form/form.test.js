@@ -14,7 +14,7 @@ describe("Form tests", () => {
 
     it("the input must update the value", async () => {
         const name = "Fulana Antonia"
-        const { getByPlaceholderText, getByText } = render(<Form />);
+        const { getByPlaceholderText } = render(<Form />);
 
         const input = getByPlaceholderText("Fulana")
 
