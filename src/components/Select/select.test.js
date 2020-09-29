@@ -1,19 +1,24 @@
 import React from "react";
-import { render, fireEvent, cleanup } from "@testing-library/react";
-import { SELECT_VALUES } from '../../constants'
+import { render, fireEvent, cleanup, screen } from "@testing-library/react";
+import { SELECT_VALUES } from "../../constants";
 import Select from ".";
 
 describe("Select test", () => {
+  afterEach(cleanup);
 
-    afterEach(cleanup)
+  it("should be render select change value", async () => {
+    const { getByTestId, queryByTestId, getByText, getAllByRole } = render(
+      <Select options={SELECT_VALUES} handleChange={() => {}} />
+    );
 
-    it("should be render select change value", async () => {
-        const { getByTestId, getByText } = render(<Select options={SELECT_VALUES} handleChange={() => {}} />);
+    expect(getAllByRole("option")).toHaveLength(5);
 
-        fireEvent.change(getByTestId("position"), { target: { value: "senior" }});
+    expect(queryByTestId("selecionado")).not.toBeInTheDocument();
 
-        expect(getByTestId("selecionado")).toBeInTheDocument();
+    fireEvent.change(getByTestId("position"), { target: { value: "senior" } });
 
-        expect(getByText("Seu cargo é Senior")).toBeInTheDocument();
-    })
+    expect(getByTestId("selecionado")).toBeInTheDocument();
+
+    expect(getByText("Seu cargo é Senior")).toBeInTheDocument();
+  });
 });
