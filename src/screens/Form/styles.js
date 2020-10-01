@@ -1,8 +1,30 @@
 import styled from "styled-components";
+import Textured from '../../assets/background.jpg';
+
+export const Content = styled.div`
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  form {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+`
+
+export const Image = styled.div`
+  flex: 1;
+  width: calc(100% - 50%);
+  background-image: url(${Textured});
+`
 
 export const Title = styled.h1`
   font-size: 32px;
-  color: #f00;
+  color: #0097A7;
 `;
 
 export const Label = styled.label`
@@ -16,15 +38,7 @@ export const Button = styled.button`
   margin: 0 auto;
   width: 200px;
   padding: 8px;
-  border: none;
-  border-radius: 3px;
-  background: #f00;
-  color: #fff;
   cursor: pointer;
-
-  &:hover {
-    background: #b70404;
-  }
 
   &:active,
   &:focus {
