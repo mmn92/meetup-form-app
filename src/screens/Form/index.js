@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Select from '../../components/Select'
 import { SELECT_VALUES } from '../../constants'
+import { formatDate } from '../../utils/formatDate'
 import { Content, Title, Label, Button, Image } from "./styles"
 
 function Form() {
@@ -25,13 +26,13 @@ function Form() {
   }
 
   const handleChange = (change) => {
-    console.log(change)
+    // console.log(change)
     setFormResult({ ...formResult, [change.name]: change.value })
   }
 
   const handleDateInput = (e) => {
-    // console.log("match: ", e.target.value.match(/\d*/))
-    setDate(e.target.value.match(/\d*/)[0])
+    const filtered = e.target.value.replace(/\D/g, '')
+    setDate(formatDate(filtered))
   }
 
   return (

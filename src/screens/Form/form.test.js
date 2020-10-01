@@ -1,5 +1,6 @@
 import React from "react"
 import { render, fireEvent, cleanup, screen } from "@testing-library/react"
+import { formatDate } from '../../utils/formatDate'
 import Form from "."
 
 describe("Form tests", () => {
@@ -38,6 +39,18 @@ describe("Form tests", () => {
 
     fireEvent.change(input, { target: { value: number } })
     expect(input.value).toBe(number.toString())
+  })
+
+  it("should write formatted numbers in date input", async () => {
+    const number = 1111111
+    const { getByLabelText } = render(<Form />)
+
+    const input = getByLabelText(/data de nascimento/i)
+
+    expect(input).toBeInTheDocument()
+
+    fireEvent.change(input, { target: { value: number } })
+    expect(input.value).toBe(formatDate(number.toString()))
   })
 
   it("should render the radio buttons", async () => {
