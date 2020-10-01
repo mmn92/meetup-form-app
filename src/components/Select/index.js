@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 const Select = ({ options, handleChange }) => {
 
-    const [selected, setSelected] = useState({ value: "", text: "" });
+    const [selected, setSelected] = useState({ value: "", text: "" })
 
     const getTextOption = (change) => {
         const selectedOption = options.filter((opt) => {
             return opt.value === change.value && opt
         })
-        setSelected({ value: change.value, text: selectedOption[0].text})
+        setSelected({ value: change.value, text: selectedOption[0].text })
         handleChange(change)
     }
 
     return (
         <>
             <span>Nível</span>
-            {console.log(selected)}
+            {/* {console.log(selected)} */}
             <select data-testid="position" onChange={(e) => getTextOption(e.target)}>
                 <option value="" selected disabled>
                     Selecione seu nível
@@ -29,4 +29,4 @@ const Select = ({ options, handleChange }) => {
     )
 }
 
-export default Select;
+export default Select
