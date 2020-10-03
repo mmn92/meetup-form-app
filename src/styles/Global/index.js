@@ -13,6 +13,7 @@ export default createGlobalStyle`
     padding: 0;
     outline: none;
     box-sizing: border-box;
+    overflow: visible;
   }
 
   button, select, input {
@@ -30,6 +31,10 @@ export default createGlobalStyle`
     padding: 10px;
   }
 
+  input[type=radio], input[type=checkbox] {
+    margin-right: 10px;
+  }
+
   button {
     background-color: white;
     border: 2px solid #0097A7;
@@ -40,5 +45,9 @@ export default createGlobalStyle`
       background-color: #0097A7;
       color: white;
     }
+  }
+
+  span {
+    margin-bottom: 10px;
   }
 `;

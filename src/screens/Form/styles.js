@@ -11,8 +11,17 @@ export const Content = styled.div`
     padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow: scroll;
+    text-align: center;
     align-items: center;
+
+    &::-webkit-scrollbar {
+      display: none;
+}
+
+    label {
+      padding: 15px;
+    }
   }
 `
 
@@ -30,7 +39,6 @@ export const Title = styled.h1`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
 `;
 
 export const Button = styled.button`
