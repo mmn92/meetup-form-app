@@ -54,7 +54,7 @@ describe("Form tests", () => {
   })
 
   it("should render the radio buttons", async () => {
-    const { getAllByLabelText, getByText, getAllByRole } = render(<Form />)
+    const { getAllByLabelText, getAllByRole } = render(<Form />)
 
     const input = getAllByLabelText(/Quem é você/)
     expect(input).toHaveLength(2)

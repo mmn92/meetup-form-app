@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Select from '../../components/Select'
 import { SELECT_VALUES } from '../../constants'
 import { formatDate } from '../../utils/formatDate'
 import { Content, Title, Label, Button, Image } from "./styles"
 
-function Form() {
+function Form({ submitResult }) {
   const [formResult, setFormResult] = useState({
     name: "",
     birthDate: "",
@@ -13,26 +13,21 @@ function Form() {
     pet: "",
     petName: "",
   })
-  const [date, setDate] = useState("")
 
   const [hasPet, setHasPet] = useState(false)
 
-  useEffect(() => {
-    // console.log(formResult);
-  }, [formResult])
-
   const handleSubmit = (form) => {
     form.preventDefault()
+    submitResult(formResult)
   }
 
   const handleChange = (change) => {
-    // console.log(change)
     setFormResult({ ...formResult, [change.name]: change.value })
   }
 
   const handleDateInput = (e) => {
     const filtered = e.target.value.replace(/\D/g, '')
-    setDate(formatDate(filtered))
+    setFormResult({ ...formResult, [e.target.name]: formatDate(filtered)})
   }
 
   return (
@@ -41,11 +36,11 @@ function Form() {
         <Title>Meetup Form</Title>
         <Label>
           <span>Nome</span>
-          <input type="text" name="name" placeholder="Fulana" />
+          <input type="text" name="name" placeholder="Fulana" onChange={(e) => handleChange(e.target)} />
         </Label>
         <Label>
           <span>Data de Nascimento</span>
-          <input type="text" name="birthDate" value={date} onChange={handleDateInput} />
+          <input type="text" name="birthDate" value={formResult.birthDate} onChange={handleDateInput} />
         </Label>
         <Label>
           <Select options={SELECT_VALUES} handleChange={handleChange} />
@@ -78,6 +73,7 @@ function Form() {
             type="checkbox"
             name="pet"
             checked={hasPet}
+            onChange={(e) => handleChange(e.target)}
             onClick={() => setHasPet(!hasPet)}
           />
           <span>Marque se você possuir um pet</span>
@@ -85,7 +81,7 @@ function Form() {
         {hasPet && (
           <Label>
             <span>Qual seu pet?</span>
-            <input type="text" name="petName" />
+            <input type="text" name="petName" onChange={(e) => handleChange(e.target)} />
           </Label>
         )}
         <Button>Enviar</Button>
