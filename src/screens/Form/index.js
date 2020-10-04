@@ -1,24 +1,26 @@
 import React, { useState } from "react"
-import Select from '../../components/Select'
-import { SELECT_VALUES } from '../../constants'
-import { formatDate } from '../../utils/formatDate'
+import Select from "../../components/Select"
+import Modal from "../../components/Modal"
+import { SELECT_VALUES } from "../../constants"
+import { formatDate } from "../../utils/formatDate"
 import { Content, Title, Label, Button, Image } from "./styles"
 
-function Form({ submitResult }) {
+function Form() {
   const [formResult, setFormResult] = useState({
-    name: "",
-    birthDate: "",
-    position: "",
-    class: "",
-    pet: "",
-    petName: "",
+    name: "Teste",
+    birthDate: "11/11/1111",
+    position: "teste",
+    class: "teste",
+    pet: "on",
+    petName: "lucas",
   })
 
   const [hasPet, setHasPet] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const handleSubmit = (form) => {
     form.preventDefault()
-    submitResult(formResult)
+    setModalOpen(true)
   }
 
   const handleChange = (change) => {
@@ -26,12 +28,13 @@ function Form({ submitResult }) {
   }
 
   const handleDateInput = (e) => {
-    const filtered = e.target.value.replace(/\D/g, '')
-    setFormResult({ ...formResult, [e.target.name]: formatDate(filtered)})
+    const filtered = e.target.value.replace(/\D/g, "")
+    setFormResult({ ...formResult, [e.target.name]: formatDate(filtered) })
   }
 
   return (
     <Content>
+      {modalOpen && <Modal data={formResult} />}
       <form onSubmit={handleSubmit}>
         <Title>Meetup Form</Title>
         <Label>
@@ -53,7 +56,7 @@ function Form({ submitResult }) {
               name="class"
               value="worker"
               onChange={(e) => handleChange(e.target)}
-              checked={formResult.class === 'worker'}
+              checked={formResult.class === "worker"}
             />
             <span>Classe operária</span>
           </label>
@@ -63,7 +66,7 @@ function Form({ submitResult }) {
               name="class"
               value="bourgeoisie"
               onChange={(e) => handleChange(e.target)}
-              checked={formResult.class === 'bourgeoisie'}
+              checked={formResult.class === "bourgeoisie"}
             />
             <span>Burguês safado</span>
           </label>
