@@ -15,8 +15,7 @@ const Select = ({ options, handleChange }) => {
     return (
         <>
             <span>Nível</span>
-            {/* {console.log(selected)} */}
-            <select data-testid="position" onChange={(e) => getTextOption(e.target)}>
+            <select data-testid="position" name="position" onChange={(e) => getTextOption(e.target)}>
                 <option value="" selected disabled>
                     Selecione seu nível
                 </option>

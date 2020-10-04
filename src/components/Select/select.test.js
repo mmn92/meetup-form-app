@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, cleanup, screen } from "@testing-library/react";
+import { render, fireEvent, cleanup } from "@testing-library/react";
 import { SELECT_VALUES } from "../../constants";
 import Select from ".";
 
