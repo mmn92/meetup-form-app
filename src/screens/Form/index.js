@@ -7,12 +7,12 @@ import { Content, Title, Label, Button, Image } from "./styles"
 
 function Form() {
   const [formResult, setFormResult] = useState({
-    name: "Teste",
-    birthDate: "11/11/1111",
-    position: "teste",
-    class: "teste",
-    pet: "on",
-    petName: "lucas",
+    name: "",
+    birthDate: "",
+    position: "",
+    class: "",
+    pet: "",
+    petName: "",
   })
 
   const [hasPet, setHasPet] = useState(false)
